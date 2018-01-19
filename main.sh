@@ -1,44 +1,100 @@
 _Password=""
 _PathLocal=""
 _PathContainer="/tmp/files"
+_Volume=""
+
 
 main()
 {
-    echo "Resetando o container..."
-    docker stop -t 0 sqlnode1
-    docker rm sqlnode1
-    echo "Criando a o container..."
-    docker run --name sqlnode1 -d -v $(_PathLocal):$(_PathContainer) \
-            -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=$(_Password)' -p 1433:1433 -p 5022:5022 \
-            --network SQL \
-            microsoft/mssql-server-linux:2017-latest
-    echo "Aguardandado subida do container..."
-    sleep 10
-    echo "Aplicando as configurações no container..."
-    docker exec -it sqlnode1 /opt/mssql/bin/mssql-conf set hadr.hadrenabled  1
-    echo "Resetando o container para aplicar as configurações..."
-    docker stop -t 0 sqlnode1
-    docker start sqlnode1
-    echo "Aguardandado subida do container..."
-    sleep 10
-    echo "Rodando scrip1..."
-    docker exec -it sqlnode1 /opt/mssql-tools/bin/sqlcmd \
-            -S localhost -U sa -P $(_Password) -d master -i $(_PathContainer)/scripts/script_1.sql
-    echo "Copiando os certificados..."
-    docker exec -it sqlnode1 $(_PathContainer)/scripts/copy.sh $(_PathContainer)
-    echo "Rodando scrip2..."
-    docker exec -it sqlnode1 /opt/mssql-tools/bin/sqlcmd \
-            -S localhost -U sa -P $(_Password) -d master -i $(_PathContainer)/scripts/script_2.sql
-    echo "Rodando scrip3..."
-    docker exec -it sqlnode1 /opt/mssql-tools/bin/sqlcmd \
-            -S localhost -U sa -P $(_Password) -d master -i $(_PathContainer)/scripts/script_2.sql
 
+    criar_container "sqlnode1" "1433" "5022"
+
+    exec_script "sqlnode1"  "script_1.sql"
+
+    echo "Copiando os certificados..."
+    docker exec -it sqlnode1 /bin/bash $_PathContainer/scripts/copy.sh $_PathContainer
+    #exit
+    sleep 5
+
+    exec_script "sqlnode1"  "script_2.sql"
+
+    criar_slave "sqlnode2" "1434" "5023"
+
+    criar_slave "sqlnode3" "1435" "5024"
+
+    exec_script "sqlnode1"  "script_3.sql"
+
+    echo "Limpando os arquivos..."
+    rm -r certs/
+
+}
+
+
+criar_slave ()
+{
+    Container=$1
+    PortaSql=$2
+    PortaAws=$3
+    criar_container ${Container} ${PortaSql} ${PortaAws}
+    exec_script ${Container}  "script_4.sql"
+}
+
+
+configura_always_on()
+{
+    Container=$1
+    echo "Aplicando as configurações no container..."
+    docker exec -it ${Container} /opt/mssql/bin/mssql-conf set hadr.hadrenabled  1
+    sleep 5
+}
+
+reset_container()
+{
+    Container=$1
+    echo "Resetando o container para aplicar as configurações..."
+    docker stop -t 0 ${Container}
+    docker start ${Container}
+    echo "Aguardandado subida do container..."
+    #exit
+    sleep 20
+
+}
+
+criar_container()
+{
+
+    Container=$1
+    PortaSql=$2
+    PortaAws=$3
+    echo "Criando a o container ${Container}..."
+    docker stop -t 0 ${Container}
+    docker rm ${Container}
+    docker run --name ${Container} -d -v ${_PathLocal}:${_PathContainer} -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL microsoft/mssql-server-linux:2017-latest
+    echo "Aguardandado subida do container..."
+    #exit
+    sleep 10
+
+    configura_always_on ${Container}
+    reset_container ${Container}
+}
+
+exec_script ()
+{
+    Container=$1
+    Script=$2
+    echo "Rodando em ${Container} o script  ${Script}..."
+    docker exec -it ${Container}  /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${_Password} -d master -i ${_PathContainer}/scripts/${Script}
+    sleep 5
 }
 
 #if(n $1);
 #then
-    _Password="P@ssw0rd" #$1
-    _PathLocal=pwd
+    _Password="P@ssw0rd"
+    _PathLocal=${PWD}
+    _Volume="$_PathLocal:$_PathContainer"
+    echo ${_Volume}
+    echo ${PWD}
+    
     main
 #else
 #    echo ""
