@@ -1,6 +1,6 @@
-_Password = ""
-_PathLocal = ""
-_PathContainer = "/tmp/files"
+_Password=""
+_PathLocal=""
+_PathContainer="/tmp/files"
 
 main()
 {
@@ -38,8 +38,8 @@ main()
 
 #if(n $1);
 #then
-    _Password = "P@ssw0rd" #$1
-    _PathLocal = pwd
+    _Password="P@ssw0rd" #$1
+    _PathLocal=pwd
     main
 #else
 #    echo ""
