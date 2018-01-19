@@ -32,8 +32,7 @@ main()
     echo "Rodando scrip3..."
     docker exec -it sqlnode1 /opt/mssql-tools/bin/sqlcmd \
             -S localhost -U sa -P $(_Password) -d master -i $(_PathContainer)/scripts/script_2.sql
-    
-    esac
+
 }
 
 #if(n $1);
