@@ -68,7 +68,7 @@ criar_container()
     echo "Criando a o container ${Container}..."
     docker stop -t 0 ${Container}
     docker rm ${Container}
-    docker run --name ${Container} -d -v ${_PathLocal}:${_PathContainer} -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL microsoft/mssql-server-linux:2017-latest
+    docker run --name ${Container} -h=${Container} -d -v ${_PathLocal}:${_PathContainer} -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL microsoft/mssql-server-linux:2017-latest
     echo "Aguardandado subida do container..."
     #exit
     sleep 10
