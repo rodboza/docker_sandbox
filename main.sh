@@ -12,7 +12,10 @@ main()
     exec_script "sqlnode1"  "script_2.sql"
     criar_slave "sqlnode2" "1434" "5023"
     criar_slave "sqlnode3" "1435" "5024"
-    exec_script "sqlnode1"  "script_3.sql"
+    exec_script "sqlnode1"  "script_4.sql"
+    exec_script "sqlnode2"  "script_5.sql"
+    exec_script "sqlnode3"  "script_5.sql"
+    exec_script "sqlnode1"  "script_6.sql"
     echo "Limpando os arquivos..."
     rm -r certs/
 }
@@ -25,7 +28,7 @@ criar_slave ()
     PortaAws=$3
     criar_container ${Container} ${PortaSql} ${PortaAws}
     exec_shell_script ${Container} "copy_2.sh" "Copiando e registrando os certificados"
-    exec_script ${Container}  "script_4.sql"
+    exec_script ${Container}  "script_3.sql"
 }
 
 exec_shell_script()
