@@ -46,7 +46,6 @@ config_master ()
 
 config_slave ()
 {
-{
     Container=$1
     exec_shell_script ${Container} "copy_2.sh" "Copiando e registrando os certificados"
     exec_script ${Container}  "script_3.sql"
