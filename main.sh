@@ -58,7 +58,7 @@ reset_container()
     docker start ${Container}
     echo "Aguardandado subida do container..."
     #exit
-    sleep 20
+    sleep 25
 
 }
 
@@ -74,7 +74,7 @@ criar_container()
     docker run --name ${Container} -h=${Container} -d -v ${_PathLocal}:${_PathContainer} -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL microsoft/mssql-server-linux:2017-latest
     echo "Aguardandado subida do container..."
     #exit
-    sleep 10
+    sleep 15
 
     configura_always_on ${Container}
     reset_container ${Container}
