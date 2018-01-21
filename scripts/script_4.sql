@@ -6,24 +6,30 @@ WITH (DB_FAILOVER = ON, CLUSTER_TYPE = EXTERNAL)
 FOR REPLICA ON
         N'sqlnode1'
         WITH (
-            ENDPOINT_URL = N'tcp://sqlnode1:5022',
-            AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
-            FAILOVER_MODE = EXTERNAL,
-            SEEDING_MODE = AUTOMATIC
+           ENDPOINT_URL = N'tcp://sqlnode1:5022',
+           AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
+           FAILOVER_MODE = EXTERNAL,
+           SEEDING_MODE = AUTOMATIC,
+           PRIMARY_ROLE ( ALLOW_CONNECTIONS = ALL ),
+           SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL ) 
         ),
         N'sqlnode2'
         WITH (
            ENDPOINT_URL = N'tcp://sqlnode2:5022',
            AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
            FAILOVER_MODE = EXTERNAL,
-           SEEDING_MODE = AUTOMATIC
+           SEEDING_MODE = AUTOMATIC,
+           PRIMARY_ROLE ( ALLOW_CONNECTIONS = ALL ),
+           SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL ) 
         ),
         N'sqlnode3'
         WITH(
            ENDPOINT_URL = N'tcp://sqlnode3:5022',
            AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
            FAILOVER_MODE = EXTERNAL,
-           SEEDING_MODE = AUTOMATIC
+           SEEDING_MODE = AUTOMATIC,
+           PRIMARY_ROLE ( ALLOW_CONNECTIONS = ALL ),
+           SECONDARY_ROLE (ALLOW_CONNECTIONS = ALL ) 
         );
 GO
 
