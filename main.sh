@@ -10,7 +10,7 @@ main()
     criar_container "sqlnode2" "1434" "5023"
     criar_container "sqlnode3" "1435" "5024"
     echo "Aguardandado subida dos containers..."
-    sleep 15
+    sleep 20
     
     configura_always_on "sqlnode1"
     configura_always_on "sqlnode2"
@@ -21,7 +21,7 @@ main()
     reset_container "sqlnode2"
     reset_container "sqlnode3"
     echo "Aguardandado subida dos containers..."
-    sleep 25
+    sleep 30
 
     config_master "sqlnode1"    
     config_slave "sqlnode2"
@@ -94,7 +94,7 @@ exec_script ()
     Script=$2
     echo "Rodando em ${Container} o script  ${Script}..."
     docker exec -it ${Container}  /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P ${_Password} -d master -i ${_PathContainer}/scripts/${Script}
-    sleep 5
+    sleep 10
 }
 
 #if(n $1);
