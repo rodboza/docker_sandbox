@@ -6,11 +6,11 @@ _Volume=""
 
 main()
 {
-    criar_container "sqlnode1" "1433" "5022"
-    criar_container "sqlnode2" "1434" "5023"
-    criar_container "sqlnode3" "1435" "5024"
+    #criar_container "sqlnode1" "1433" "5022"
+    #criar_container "sqlnode2" "1434" "5023"
+    #criar_container "sqlnode3" "1435" "5024"
     echo "Aguardandado subida dos containers..."
-    sleep 20
+    #sleep 20
     
     configura_always_on "sqlnode1"
     configura_always_on "sqlnode2"

@@ -1,0 +1,10 @@
+/home/rodboza/docker_sqlserver/aspnet/obj/Debug/netcoreapp2.0/aspnet.csproj.CoreCompileInputs.cache
+/home/rodboza/docker_sqlserver/aspnet/obj/Debug/netcoreapp2.0/aspnet.AssemblyInfoInputs.cache
+/home/rodboza/docker_sqlserver/aspnet/obj/Debug/netcoreapp2.0/aspnet.AssemblyInfo.cs
+/home/rodboza/docker_sqlserver/aspnet/bin/Debug/netcoreapp2.0/aspnet.deps.json
+/home/rodboza/docker_sqlserver/aspnet/bin/Debug/netcoreapp2.0/aspnet.runtimeconfig.json
+/home/rodboza/docker_sqlserver/aspnet/bin/Debug/netcoreapp2.0/aspnet.runtimeconfig.dev.json
+/home/rodboza/docker_sqlserver/aspnet/bin/Debug/netcoreapp2.0/aspnet.dll
+/home/rodboza/docker_sqlserver/aspnet/bin/Debug/netcoreapp2.0/aspnet.pdb
+/home/rodboza/docker_sqlserver/aspnet/obj/Debug/netcoreapp2.0/aspnet.dll
+/home/rodboza/docker_sqlserver/aspnet/obj/Debug/netcoreapp2.0/aspnet.pdb
