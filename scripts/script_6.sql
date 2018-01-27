@@ -20,16 +20,16 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE TABLE [dbo].[Person](
+CREATE TABLE [dbo].[Persons](
 	[Id] [int] ,
 	[FirstName] varchar(50),
 	[MiddleName] varchar(50),
-	[LastName] varchar(50)
+	[LastName] varchar(50),
+	[ServerName] as @@SERVERNAME
 ) 
-
 GO
 
-insert into [dbo].[Person]
+insert into [dbo].[Persons] (Id, FirstName, MiddleName, LastName)
       Select 313,'James','T.','Aguilar'
 union Select 369,'Thomas','B.','Armstrong'
 union Select 389,'James','B.','Bailey'
