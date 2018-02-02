@@ -26,8 +26,10 @@ namespace aspnet
             services.AddMvc();
 
             //string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            string connectionString = @"Data Source=13.72.79.75;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
+            //string connectionString = @"Data Source=13.72.79.75;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
             //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
+            //string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
             services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IDataService, DataService>();
         }
