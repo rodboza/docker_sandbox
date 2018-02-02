@@ -14,6 +14,7 @@
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
+	    <th>Server Name</th>
         </tr>
 
         @foreach (Person item in Model)
@@ -23,6 +24,7 @@
             <td>@(item.FirstName)</td>
             <td>@(item.MiddleName)</td>
             <td>@(item.LastName)</td>
+            <td>@(item.ServerName)</td>
         </tr>
         }
     </table>

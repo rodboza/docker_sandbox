@@ -26,9 +26,12 @@ namespace aspnet
             services.AddMvc();
 
             //string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            string connectionString = @"Data Source=13.72.79.75;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
-            //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
-            services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
+            // string connectionString = @"Data Source=13.72.79.75;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
+            //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            //string connectionString = @"Data Source=proxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            //services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IDataService, DataService>();
         }
 
@@ -53,8 +56,8 @@ namespace aspnet
                     template: "{controller=Person}/{action=Index}/{id?}");
             });
 
-            IDataService dataService = serviceProvider.GetService<IDataService>();
-            dataService.InicializaDB();
+            //IDataService dataService = serviceProvider.GetService<IDataService>();
+            //dataService.InicializaDB();
 
         }
     }
