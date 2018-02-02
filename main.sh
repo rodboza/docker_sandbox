@@ -8,6 +8,9 @@ main()
 {
     build_imagem_base 
 
+    echo "Criando rede para uso dos containers..."
+    docker network create SQL
+
     criar_container "sqlnode1" "1433" "5022"
     criar_container "sqlnode2" "1434" "5023"
 #    criar_container "sqlnode3" "1435" "5024"
@@ -23,7 +26,7 @@ main()
 #    exec_script "sqlnode3"  "script_5.sql"
     exec_script "sqlnode1"  "script_6.sql"
     echo "Limpando os arquivos..."
-#    rm -r certs/
+    rm -r certs/
 
 
     echo "Criando e executando container HAProxy"
@@ -35,6 +38,7 @@ main()
     cd ..
 
 }
+
 
 criar_HAProxy()
 {
