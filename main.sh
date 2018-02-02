@@ -6,37 +6,37 @@ _Volume=""
 
 main()
 {
-    #criar_container "sqlnode1" "1433" "5022"
-    #criar_container "sqlnode2" "1434" "5023"
-    #criar_container "sqlnode3" "1435" "5024"
-    echo "Aguardandado subida dos containers..."
-    #sleep 20
-    
-    configura_always_on "sqlnode1"
-    configura_always_on "sqlnode2"
-    configura_always_on "sqlnode3"
-    sleep 5
-    
-    reset_container "sqlnode1"
-    reset_container "sqlnode2"
-    reset_container "sqlnode3"
+    echo "Build da imagem base de SQL para uso dos containers..."
+    docker build -t sql_base -f sql_master.Dockerfile .
+
+    echo "Criando rede para uso dos containers..."
+    docker network create SQL
+
+    criar_container "sqlnode1" "1433" "5022"
+    criar_container "sqlnode2" "1434" "5023"
+#    criar_container "sqlnode3" "1435" "5024"
     echo "Aguardandado subida dos containers..."
     sleep 30
 
-    config_master "sqlnode1"    
+    config_master "sqlnode1"
     config_slave "sqlnode2"
-    config_slave "sqlnode3"
-    
+#    config_slave "sqlnode3"
+
     exec_script "sqlnode1"  "script_4.sql"
     exec_script "sqlnode2"  "script_5.sql"
-    exec_script "sqlnode3"  "script_5.sql"
+#    exec_script "sqlnode3"  "script_5.sql"
     exec_script "sqlnode1"  "script_6.sql"
     echo "Limpando os arquivos..."
     rm -r certs/
+
+    echo "Criando e executando aplicação aspnet"
+    cd aspnet/
+    ./run.sh
+    cd ..
+
 }
 
-
-config_master ()
+config_master()
 {
     Container=$1
     exec_script ${Container}  "script_1.sql"
@@ -44,7 +44,7 @@ config_master ()
     exec_script ${Container}  "script_2.sql"
 }
 
-config_slave ()
+config_slave()
 {
     Container=$1
     exec_shell_script ${Container} "copy_2.sh" "Copiando e registrando os certificados"
@@ -74,6 +74,7 @@ reset_container()
     Container=$1
     echo "Resetando o container para aplicar as configurações..."
     docker stop -t 0 ${Container}
+    sleep 3
     docker start ${Container}
 }
 
@@ -85,10 +86,10 @@ criar_container()
     echo "Criando a o container ${Container}..."
     docker stop -t 0 ${Container}
     docker rm ${Container}
-    docker run --name ${Container} -h=${Container} -d -v ${_PathLocal}:${_PathContainer} -e 'ACCEPT_EULA=Y' -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL microsoft/mssql-server-linux:2017-latest
+    docker run --name ${Container} -h=${Container} -d -v ${_PathLocal}:${_PathContainer} -e SA_PASSWORD=${_Password} -p ${PortaSql}:1433 -p ${PortaAws}:5022 --network SQL sql_base
 }
 
-exec_script ()
+exec_script()
 {
     Container=$1
     Script=$2
@@ -104,7 +105,7 @@ exec_script ()
     _Volume="$_PathLocal:$_PathContainer"
     echo ${_Volume}
     echo ${PWD}
-    
+
     main
 #else
 #    echo ""
