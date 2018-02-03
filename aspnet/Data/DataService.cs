@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,24 +18,17 @@ namespace aspnet.Data
         }
 
         public DataService()
-{
-}
-
-
+	{
+	}
 
         public List<Person> GetPersons()
         {
 	   List<Person> lista = new List<Person>{};
-	   //var lista = 0;
 	   int erro = 1;
 	   while ( erro > 0 && erro < 10)
            try
 	   {
-		//string connectionString = @"Data Source=13.72.79.75;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd";
-		string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
-		var options = new DbContextOptionsBuilder<Contexto>();
-		options.UseSqlServer(connectionString);
-		Contexto myCtxt = new Contexto(options.Options);
+		Contexto myCtxt = new Contexto();
 		lista =  myCtxt.Persons.ToList();
 		erro = 0;
 	   }
