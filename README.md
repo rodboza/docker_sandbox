@@ -14,6 +14,7 @@ No terminal digite:
 ``` sh
 sudo su
 git clone https://github.com/rodboza/docker_sqlserver.git
+git checkout v1.0
 cd docker_sqlserver
 ./main.sh
 ```
