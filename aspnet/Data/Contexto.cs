@@ -18,7 +18,7 @@ namespace aspnet.Data
 		string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
 		var options = new DbContextOptionsBuilder<Contexto>();
 		options.UseSqlServer(connectionString);
-		this(options.Options);        
+		base(options.Options);        
         }
 
         public Contexto(DbContextOptions<Contexto> options)
