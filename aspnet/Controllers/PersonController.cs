@@ -25,6 +25,27 @@ namespace aspnet.Controllers
             return View(persons);
         }
 
-        
+        // GET: Person/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Person/Create
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Id,FirstName,MiddleName,LastName")] Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                _dataService.AddPersons(person);
+                //_context.Add(person);
+                //await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(person);
+        }
+
+
+
     }
 }

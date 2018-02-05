@@ -1,0 +1,43 @@
+﻿@{
+    // Layout = null;
+    ViewData["Title"] = "Novo Person";
+}
+@model Person
+<h2>Novo Person</h2>
+
+<p></p>
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Person</h4>
+        <hr />
+        <div class="form-group">
+            <label asp-for="Id" class="col-md-2 control-label"></label>
+            <div class="col-md-3">
+                <input asp-for="Id" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="col-md-2 control-label"></label>
+            <div class="col-md-3">
+                <input asp-for="FirstName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="MiddleName" class="col-md-2 control-label"></label>
+            <div class="col-md-3">
+                <input asp-for="MiddleName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-3">
+                <input asp-for="LastName" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-3">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>

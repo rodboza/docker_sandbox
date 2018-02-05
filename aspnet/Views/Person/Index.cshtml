@@ -5,7 +5,7 @@
 @model List<Person>
 <h2>Index</h2>
 
-<p>Hello from our View Template!</p>
+<p>Hello from our View Template! (<a asp-action="Create">Novo</a>) </p>
 
 <div class="table-responsive">
     <table class="table">
@@ -19,14 +19,15 @@
 
         @foreach (Person item in Model)
         {
-        <tr>
-            <td>@(item.Id)</td>
-            <td>@(item.FirstName)</td>
-            <td>@(item.MiddleName)</td>
-            <td>@(item.LastName)</td>
-            <td>@(item.ServerName)</td>
-        </tr>
+            <tr>
+                <td>@(item.Id)</td>
+                <td>@(item.FirstName)</td>
+                <td>@(item.MiddleName)</td>
+                <td>@(item.LastName)</td>
+                <td>@(item.ServerName)</td>
+            </tr>
         }
     </table>
 </div>
+
 

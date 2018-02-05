@@ -30,7 +30,7 @@ namespace aspnet
             //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
             //string connectionString = @"Data Source=sqlnode1;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
             //string connectionString = @"Data Source=proxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
-            string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
+            //string connectionString = @"Data Source=haproxy;Initial Catalog=db1;Persist Security Info=True;User ID=sa;Password=P@ssw0rd;ApplicationIntent=ReadOnly";
             //services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
             services.AddTransient<IDataService, DataService>();
         }

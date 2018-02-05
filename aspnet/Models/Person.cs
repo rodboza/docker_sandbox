@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace aspnet.Models
 {
@@ -11,7 +12,8 @@ namespace aspnet.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-	public string ServerName { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+	    public string ServerName { get; private set;}
 
         public Person()
         {
@@ -27,7 +29,7 @@ namespace aspnet.Models
             this.FirstName = firstName;
             this.MiddleName = middleName;
             this.LastName = lastName;
-	    this.ServerName = serverName;
+	        this.ServerName = serverName;
 
         }
     }
