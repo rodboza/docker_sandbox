@@ -24,4 +24,7 @@ cd docker_sqlserver
 
 # Referências
 https://remark.wordpress.com/articles/publish-subscribe-with-activemq-and-nms/
+https://stackoverflow.com/questions/19933071/activemq-no-topic-messages-received-from-durableconsumer
+https://www.nuget.org/packages/Apache.NMS.ActiveMQ.NetCore/
+https://www.nuget.org/packages/Apache.NMS.NetCore/
 
