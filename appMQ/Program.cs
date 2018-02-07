@@ -12,13 +12,13 @@ string TOPIC_NAME = "PersonsTopic";
 string BROKER = "tcp://localhost:61616";
 SimpleTopicPublisher publisher;
 publisher = new SimpleTopicPublisher(TOPIC_NAME, BROKER);
-publisher.SendMessage(@"{Id:111,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}");
-publisher.SendMessage(@"{Id:222,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}");
-publisher.SendMessage(@"{Id:333,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}");
+publisher.SendMessage(@"{Id:111,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}" +DateTime.Now.ToLongTimeString());
+publisher.SendMessage(@"{Id:222,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}" +DateTime.Now.ToLongTimeString());
+publisher.SendMessage(@"{Id:333,FirtName:Rodrigo,MiddleName:M,LastName:Barboza}" +DateTime.Now.ToLongTimeString());
 publisher.Dispose();
 
             Console.WriteLine("Mensagem Enviada!");
-
+/**/
 string CLIENT_ID = "ActiveMqFirstSubscriber";
 string CONSUMER_ID = "ActiveMqFirstSubscriber";
 
@@ -28,6 +28,7 @@ subscriber.OnMessageReceived += new MessageReceivedDelegate(subscriber_OnMessage
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 }
+/**/
 
 
 

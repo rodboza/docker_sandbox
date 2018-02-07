@@ -27,7 +27,8 @@ public void SendMessage(string message)
 if (!this.isDisposed)
 {
 ITextMessage textMessage = this.session.CreateTextMessage(message);
-this.producer.Send(textMessage);
+this.producer.Send(textMessage, MsgDeliveryMode.Persistent, MsgPriority.AboveNormal, TimeSpan.FromMinutes(30)); 
+//this.producer.Send(textMessage);
 }
 else
 {
