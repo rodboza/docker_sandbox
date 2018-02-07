@@ -24,6 +24,13 @@ this.connection.Start();
 this.session = connection.CreateSession();
 ActiveMQTopic topic = new ActiveMQTopic(topicName);
 this.consumer = this.session.CreateDurableConsumer(topic, consumerId, "1=1", false);
+//var mesnagem = consumer.Receive()
+var message = (ActiveMQTextMessage)consumer.Receive(TimeSpan.FromSeconds(30));
+Console.WriteLine (message.Text);
+Console.WriteLine ("--------------------------");
+Console.WriteLine (message.Text);
+Console.WriteLine ("--------------------------");
+
 //this.consumer = this.session.CreateDurableConsumer(topic, consumerId, "2 > 1", false);
 this.consumer.Listener += new MessageListener(OnMessage);
 }
