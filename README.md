@@ -35,6 +35,7 @@ Sample MVCMovie: https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials
 <p>
 <p>
 Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
+  
 ``` sh
 dotnet add package Apache.NMS.NetCore --version 1.7.1
 dotnet add package Apache.NMS.ActiveMQ.NetCore --version 1.7.2
