@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace dbmq
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            StartSubscriber();
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
+
+
+        static SimpleTopicSubscriber subscriber;
+
+        public static void StartSubscriber()
+        {
+            string TOPIC_NAME = "PersonsTopic";
+            string BROKER = "tcp://activemq:61616";
+            string CLIENT_ID = "ActiveMqFirstSubscriber";
+            string CONSUMER_ID = "ActiveMqFirstSubscriber";
+
+            subscriber = new SimpleTopicSubscriber(TOPIC_NAME, BROKER, CLIENT_ID, CONSUMER_ID);
+            subscriber.OnMessageReceived += new MessageReceivedDelegate(subscriber_OnMessageReceived);
+
+            /*
+            using (SimpleTopicSubscriber subscriber = new SimpleTopicSubscriber(TOPIC_NAME, BROKER, CLIENT_ID, CONSUMER_ID))
+            {
+                subscriber.OnMessageReceived += new MessageReceivedDelegate(subscriber_OnMessageReceived);
+            }
+            */
+        }
+
+	static void subscriber_OnMessageReceived(string message)
+	{
+		Console.WriteLine(message);
+	}
+	
+    }
+}
