@@ -23,14 +23,26 @@ cd docker_sqlserver
 
 
 # Referências
-Exemplo aplicação .Net com Publish/Subscribe com ActiveMQ : https://remark.wordpress.com/articles/publish-subscribe-with-activemq-and-nms/
+Exemplo aplicação .Net com Publish/Subscribe com ActiveMQ : 
+https://remark.wordpress.com/articles/publish-subscribe-with-activemq-and-nms/
+
 https://stackoverflow.com/questions/19933071/activemq-no-topic-messages-received-from-durableconsumer
-Nuget ActiveMQ NetCore: https://www.nuget.org/packages/Apache.NMS.ActiveMQ.NetCore/
-Nuget ActiveMQ NetCore: https://www.nuget.org/packages/Apache.NMS.NetCore/
+
+Nuget ActiveMQ NetCore: 
+https://www.nuget.org/packages/Apache.NMS.ActiveMQ.NetCore/
+Nuget ActiveMQ NetCore: 
+https://www.nuget.org/packages/Apache.NMS.NetCore/
+
 https://github.com/asseco-see/dotnet-broker-wrapper
 
-Instalação do MySQL no ubuntu: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04
-Sample MVCMovie: https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie
+Instalação do MySQL no ubuntu: 
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04
+
+Sample MVCMovie: 
+https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie
+
+Criar um aplicativo Web com o ASP.NET Core MVC: 
+https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/
 
 <p>
 <p>
