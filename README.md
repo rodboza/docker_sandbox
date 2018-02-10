@@ -23,9 +23,34 @@ cd docker_sqlserver
 
 
 # Referências
+Exemplo aplicação .Net com Publish/Subscribe com ActiveMQ : <p/>
 https://remark.wordpress.com/articles/publish-subscribe-with-activemq-and-nms/
-https://stackoverflow.com/questions/19933071/activemq-no-topic-messages-received-from-durableconsumer
-https://www.nuget.org/packages/Apache.NMS.ActiveMQ.NetCore/
-https://www.nuget.org/packages/Apache.NMS.NetCore/
-https://github.com/asseco-see/dotnet-broker-wrapper
 
+<p/>https://stackoverflow.com/questions/19933071/activemq-no-topic-messages-received-from-durableconsumer
+
+Nuget ActiveMQ NetCore: <p/>
+https://www.nuget.org/packages/Apache.NMS.ActiveMQ.NetCore/
+Nuget ActiveMQ NetCore: <p/>
+https://www.nuget.org/packages/Apache.NMS.NetCore/
+
+<p/>https://github.com/asseco-see/dotnet-broker-wrapper
+
+Instalação do MySQL no ubuntu: <p/>
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04
+
+Sample MVCMovie: <p/>
+https://github.com/aspnet/Docs/tree/master/aspnetcore/tutorials/first-mvc-app-xplat/start-mvc/sample/MvcMovie
+
+Criar um aplicativo Web com o ASP.NET Core MVC: <p/>
+https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/
+
+Criando APIs Web : <p/>
+https://docs.microsoft.com/pt-br/aspnet/core/mvc/web-api/
+<p>
+<p>
+Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
+  
+``` sh
+dotnet add package Apache.NMS.NetCore --version 1.7.1
+dotnet add package Apache.NMS.ActiveMQ.NetCore --version 1.7.2
+```
