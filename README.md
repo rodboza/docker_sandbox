@@ -1,4 +1,4 @@
-﻿# Docker SandBox Master
+﻿# Docker SandBox (Master)
 
 Para executar você precisa de uma máquina Linux com o Docker instalado.
 
@@ -6,15 +6,15 @@ No terminal digite:
 
 ``` sh
 sudo su
-git clone https://github.com/rodboza/docker_sqlserver.git
+git clone https://github.com/rodboza/docker_sandbox.git
 git checkout master
-cd docker_sqlserver
+cd docker_sandbox
 ./main.sh
 ```
 
 
 # Desenho da Arquitetura:<p>
-![Desenho da Arquitetura](https://raw.githubusercontent.com/rodboza/docker_sqlserver/master/arquitetura.png)
+![Desenho da Arquitetura](https://raw.githubusercontent.com/rodboza/docker_sandbox/master/arquitetura.png)
 
 <p>Master - Em Desenvolvimento - Fazendo a atualização do SQL via Tópico do ActiveMQ, e se der troca dos SQL Servers por MySql para deixar a sulução mais leve.
 <p>v3.0 - Inclusão de uma conexão direta no node Primary do Always On para permitir a gravação de dados.
