@@ -50,6 +50,10 @@ https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/
 
 Criando APIs Web : <p/>
 https://docs.microsoft.com/pt-br/aspnet/core/mvc/web-api/
+
+Git que eu usei como referencia para o Supervisord com o MariaDb
+https://github.com/lsst-sqre/qa-dashboard
+
 <p>
 <p>
 Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
