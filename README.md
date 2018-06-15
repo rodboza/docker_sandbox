@@ -51,7 +51,7 @@ https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/
 Criando APIs Web : <p/>
 https://docs.microsoft.com/pt-br/aspnet/core/mvc/web-api/
 
-Git que eu usei como referencia para o Supervisord com o MariaDb
+Git que eu usei como referencia para o Supervisord com o MariaDb : <p/>
 https://github.com/lsst-sqre/qa-dashboard
 
 <p>
