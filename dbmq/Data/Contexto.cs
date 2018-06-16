@@ -18,11 +18,15 @@ namespace dbmq.Data
         public Contexto()
         : base()
         {
+            Console.WriteLine("create do Contexto...");
+            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
         }
 
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)
         {
+            Console.WriteLine("create do Contexto (options)...");
+            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
