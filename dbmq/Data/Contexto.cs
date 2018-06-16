@@ -13,25 +13,24 @@ namespace dbmq.Data
     {
 
         public DbSet<Msg> qa_msgs { get; set; }
-        public IConfiguration Configuration { get; }
 
         public Contexto()
         : base()
         {
             Console.WriteLine("create do Contexto...");
-            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+            Console.WriteLine("Server=localhost;User Id=teste;Password=teste;Database=qadb");
         }
 
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)
         {
             Console.WriteLine("create do Contexto (options)...");
-            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+            Console.WriteLine("Server=localhost;User Id=teste;Password=teste;Database=qadb");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
            => optionsBuilder
-               .UseMySql(Configuration.GetConnectionString("DefaultConnection"));
+               .UseMySql("Server=localhost;User Id=teste;Password=teste;Database=qadb");
 
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 using dbmq.Data;
 using dbmq.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace dbmq
 {
@@ -17,8 +18,8 @@ namespace dbmq
     {
         public static void Main(string[] args)
         {
-            StartSubscriber();
             BuildWebHost(args).Run();
+            StartSubscriber();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
