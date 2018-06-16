@@ -51,12 +51,19 @@ namespace dbmq
         {
             Console.WriteLine(message);
 
-            using (var contexto = new Contexto())
+            try
             {
-                var msg = new Msg(message);
-                contexto.Add(msg);
-                contexto.SaveChanges();
-                Console.WriteLine("teste");
+                using (var contexto = new Contexto())
+                {
+                    var msg = new Msg(message);
+                    contexto.Add(msg);
+                    contexto.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.Write("Erro:");
+                Console.WriteLine(e);
             }
 
         }
