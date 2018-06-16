@@ -32,7 +32,7 @@ RUN /etc/init.d/mysql start \
     && mysql -u ${user} -e "CREATE DATABASE qadb" \
     && mysql -u ${user} -e "create user 'teste'@'%' identified by 'teste'" \
     && mysql -u ${user} -e "grant all privileges on *.* to 'teste'@'%' with grant option" \
-    && mysql -u ${user} qadb -e "create table qa_msgs (id int AUTO_INCREMENT, data datetime default now(), host varchar(99) default @@hostname, msg VARCHAR(65000), KEY (id) ) " 
+    && mysql -u ${user} qadb -e "create table qa_msgs (id int AUTO_INCREMENT, data datetime default now(), host varchar(50), msg VARCHAR(65000), KEY (id) ) " 
 #    && mysql -u ${user} -e ""
 
 
