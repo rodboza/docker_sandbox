@@ -19,11 +19,14 @@ namespace dbmq.Models
         public String host { get; set; }
         public String msg { get; set; }
 
-        public Msg (){}
+        public Msg()
+        {
+            this.host = Environment.MachineName;
+        }
 
         public Msg (string msg)
         {
-            this.msg = msg;
+            this.msg = msg;            
         }
     }
 }
