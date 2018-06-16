@@ -15,7 +15,9 @@ namespace dbmq.Models
         public int id { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime data { get; set; }
-        public string msg { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public String host { get; set; }
+        public String msg { get; set; }
 
         public Msg (){}
 
