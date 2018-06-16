@@ -17,15 +17,11 @@ namespace dbmq.Data
         public Contexto()
         : base()
         {
-            Console.WriteLine("create do Contexto...");
-            Console.WriteLine("Server=localhost;User Id=teste;Password=teste;Database=qadb");
         }
 
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)
         {
-            Console.WriteLine("create do Contexto (options)...");
-            Console.WriteLine("Server=localhost;User Id=teste;Password=teste;Database=qadb");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

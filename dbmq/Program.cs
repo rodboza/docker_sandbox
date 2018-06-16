@@ -34,8 +34,8 @@ namespace dbmq
         {
             string TOPIC_NAME = "PersonsTopic";
             string BROKER = "tcp://activemq:61616";
-            string CLIENT_ID = "ActiveMqFirstSubscriber";
-            string CONSUMER_ID = "ActiveMqFirstSubscriber";
+            string CLIENT_ID = Environment.MachineName;
+            string CONSUMER_ID = "DBMQ" + Environment.MachineName;
 
             subscriber = new SimpleTopicSubscriber(TOPIC_NAME, BROKER, CLIENT_ID, CONSUMER_ID);
             subscriber.OnMessageReceived += new MessageReceivedDelegate(subscriber_OnMessageReceived);
