@@ -54,6 +54,9 @@ https://docs.microsoft.com/pt-br/aspnet/core/mvc/web-api/
 Git que eu usei como referencia para o Supervisord com o MariaDb : <p/>
 https://github.com/lsst-sqre/qa-dashboard
 
+Supervisord, usei ele para conseguir colocar mais de um serviço no Docker: <p/>
+http://supervisord.org
+
 <p>
 <p>
 Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
