@@ -47,18 +47,20 @@ namespace dbmq
             */
         }
 
-	static void subscriber_OnMessageReceived(string message)
-	{
-		Console.WriteLine(message);
+        static void subscriber_OnMessageReceived(string message)
+        {
+            Console.WriteLine(message);
 
-		using ( var contexto = new Contexto() );
-		{
-			var msg = new Msg (message);
-			contexto.Add(msg);
-			contexto.SaveChanges();
-		        Console.WriteLine("teste");
-		}
-	}
-	
+            using (var contexto = new Contexto())
+            {
+                var msg = new Msg(message);
+                contexto.Add(msg);
+                contexto.SaveChanges();
+                Console.WriteLine("teste");
+            }
+
+        }
     }
+
 }
+
