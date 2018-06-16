@@ -24,6 +24,7 @@ namespace dbmq.Models
         }
 
         public Msg (string msg)
+            :this()
         {
             this.msg = msg;            
         }
