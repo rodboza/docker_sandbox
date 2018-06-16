@@ -20,7 +20,7 @@ cd docker_sandbox
 # Change log:<p>
 | Versão | Descrição |
 | ---    | :---      |
-| Master | Em Desenvolvimento - Fazendo a atualização do SQL via Tópico do ActiveMQ, e se der troca dos SQL Servers por MySql para deixar a sulução mais leve.|
+| Master | Em Desenvolvimento - Fazendo a atualização do SQL via Tópico do ActiveMQ, e se der troca dos SQL Servers por MySql para deixar a solução mais leve.|
 | v3.0 | Inclusão de uma conexão direta no node Primary do Always On para permitir a gravação de dados.|
 | v2.0 | Incluido um LoadBalance para acionar um dos nodes SQL ativo, com isso a aplicação só fuciona em modo ReadOnly, pois com o Always On ligado somente o node Primary pode realizar gravações. Para as próximas versões eu vou montar uma conexão direta ao node Primary para disponibilizar a gravação.|
 | v1.0 | Versão inicial, ao rodar o script Main.sh serão criados 4 containers, sendo três Sql Servers ligados com o AwaysOn e mais um que é uma aplicação Asp .Net core que faz acesso aos containers SQL.|
@@ -50,6 +50,10 @@ https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mvc-app/
 
 Criando APIs Web : <p/>
 https://docs.microsoft.com/pt-br/aspnet/core/mvc/web-api/
+
+Git que eu usei como referencia para o Supervisord com o MariaDb : <p/>
+https://github.com/lsst-sqre/qa-dashboard
+
 <p>
 <p>
 Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
