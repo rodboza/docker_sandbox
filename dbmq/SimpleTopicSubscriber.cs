@@ -3,6 +3,7 @@ using Apache.NMS.ActiveMQ;
 using Apache.NMS.ActiveMQ.Commands;
 using Apache.NMS;
 
+
 namespace dbmq
 {
 	public delegate void MessageReceivedDelegate(string message);
@@ -29,6 +30,7 @@ namespace dbmq
 			ActiveMQTopic topic = new ActiveMQTopic(topicName);
 			this.consumer = this.session.CreateDurableConsumer(topic, consumerId, "2 > 1", false);
 			this.consumer.Listener += new MessageListener(OnMessage);
+
 		}
 	
 		public void OnMessage(IMessage message)
@@ -39,7 +41,7 @@ namespace dbmq
 				this.OnMessageReceived(textMessage.Text);
 			}
 		}
-		
+
 		#region IDisposable Members
 		public void Dispose()
 		{

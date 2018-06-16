@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+using dbmq.Data;
+using dbmq.Models;
+
 namespace dbmq
 {
     public class Program
@@ -47,6 +50,14 @@ namespace dbmq
 	static void subscriber_OnMessageReceived(string message)
 	{
 		Console.WriteLine(message);
+
+		using ( var contexto = new Contexto() );
+		{
+			var msg = new Msg (message);
+			contexto.Add(msg);
+			contexto.SaveChanges();
+		        Console.WriteLine("teste");
+		}
 	}
 	
     }

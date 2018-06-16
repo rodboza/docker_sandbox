@@ -1,3 +1,4 @@
+
 FROM microsoft/aspnetcore-build AS build-env
 WORKDIR /app
 
@@ -9,14 +10,44 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# build runtime image
-FROM microsoft/aspnetcore
-COPY setDB.sh /pipeline/
-COPY dbcmds /pipeline/
-RUN echo "mysql-server mysql-server/root_password password chocolate" | debconf-set-selections
-RUN echo "mysql-server mysql-server/root_password_again password chocolate" | debconf-set-selections
-RUN apt-get update && apt-get -y upgrade && apt-get -y install mysql-server && apt-get -y install nano vim
-RUN /pipeline/setDB.sh
+
+
+
+
+
+
+FROM microsoft/aspnetcore:2.0
+
+
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server mariadb-client supervisor \
+    && mkdir -p /var/log/supervisor
+
+# Initialize squash development database
+ENV user root
+
+
+RUN /etc/init.d/mysql start \
+    && mysql -u ${user} -e "CREATE DATABASE qadb" \
+    && mysql -u ${user} -e "create user 'teste'@'%' identified by 'teste'" \
+    && mysql -u ${user} -e "grant all privileges on *.* to 'teste'@'%' with grant option" \
+    && mysql -u ${user} qadb -e "create table qa_msgs (id int AUTO_INCREMENT, data datetime default current_timestamp, msg VARCHAR(65000), KEY (id) ) " 
+#    && mysql -u ${user} -e ""
+
+
+
+
+
+#COPY setDB.sh /pipeline/
+#COPY dbcmds /pipeline/
+#RUN /pipeline/setDB.sh
 WORKDIR /app
 COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "dbmq.dll"]
+#ENTRYPOINT ["dotnet", "dbmq.dll"]
+#CMD ["dotnet","dbmq.dll"]
+#CMD ["/usr/local/bin/docker-entrypoint.sh","mysql"]
+
+ADD supervisor.conf /etc/supervisor/conf.d/supervisord.conf 
+ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
+
