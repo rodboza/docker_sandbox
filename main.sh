@@ -6,27 +6,27 @@ _Volume=""
 
 main()
 {
-    build_imagem_base 
+#    build_imagem_base 
 
-    echo "Criando rede para uso dos containers..."
-    docker network create SQL
+#    echo "Criando rede para uso dos containers..."
+#    docker network create SQL
 
-    criar_container "sqlnode1" "1433" "5022"
-    criar_container "sqlnode2" "1434" "5023"
+#    criar_container "sqlnode1" "1433" "5022"
+#    criar_container "sqlnode2" "1434" "5023"
 #    criar_container "sqlnode3" "1435" "5024"
-    echo "Aguardandado subida dos containers..."
-    sleep 30
+#    echo "Aguardandado subida dos containers..."
+#    sleep 30
     
-    config_master "sqlnode1"    
-    config_slave "sqlnode2"
+#    config_master "sqlnode1"    
+#    config_slave "sqlnode2"
 #    config_slave "sqlnode3"
     
-    exec_script "sqlnode1"  "script_4.sql"
-    exec_script "sqlnode2"  "script_5.sql"
+#    exec_script "sqlnode1"  "script_4.sql"
+#    exec_script "sqlnode2"  "script_5.sql"
 #    exec_script "sqlnode3"  "script_5.sql"
-    exec_script "sqlnode1"  "script_6.sql"
-    echo "Limpando os arquivos..."
-    rm -r certs/
+#    exec_script "sqlnode1"  "script_6.sql"
+#    echo "Limpando os arquivos..."
+#    rm -r certs/
 
 
     echo "Criando e executando container HAProxy"
@@ -44,7 +44,7 @@ criar_HAProxy()
 {
      docker stop -t 0 haproxy
      docker rm haproxy
-     docker run -d -v ${_PathLocal}/scripts/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro --network SQL --name haproxy -h=haproxy haproxy
+     docker run -d -p 33060:3306 -v ${_PathLocal}/scripts/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro --network SQL --name haproxy -h=haproxy haproxy
 }
 
 

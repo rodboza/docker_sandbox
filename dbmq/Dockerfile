@@ -49,5 +49,6 @@ COPY --from=build-env /app/out .
 #CMD ["/usr/local/bin/docker-entrypoint.sh","mysql"]
 
 ADD supervisor.conf /etc/supervisor/conf.d/supervisord.conf 
+EXPOSE 3306
 ENTRYPOINT ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
 
