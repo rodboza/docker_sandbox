@@ -57,6 +57,9 @@ https://github.com/lsst-sqre/qa-dashboard
 Supervisord, usei ele para conseguir colocar mais de um serviço no Docker: <p/>
 http://supervisord.org
 
+Como configurar o MariaDB no docker para acesso remoto (externo ao container): <p>
+https://forums.docker.com/t/configuring-mariadb-in-a-container-for-remote-client-access/8761/4
+
 <p>
 <p>
 Comandos para adicionar referencias no projeto NetCore para o ActiveMQ
