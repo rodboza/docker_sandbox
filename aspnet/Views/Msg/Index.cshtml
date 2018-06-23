@@ -1,0 +1,31 @@
+﻿@{
+    // Layout = null;
+    ViewData["Title"] = "Msg";
+}
+@model List<Msg>
+<h2>Index</h2>
+
+<p>Hello from our View Template! (<a asp-action="Create">Novo</a>) </p>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Host</th>
+            <th>Msg</th>
+        </tr>
+
+        @foreach (Msg item in Model)
+        {
+            <tr>
+                <td>@(item.id)</td>
+                <td>@(item.data)</td>
+                <td>@(item.host)</td>
+                <td>@(item.msg)</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
