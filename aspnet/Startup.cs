@@ -53,7 +53,7 @@ namespace aspnet
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Person}/{action=Index}/{id?}");
+                    template: "{controller=Msg}/{action=Index}/{id?}");
             });
 
             //IDataService dataService = serviceProvider.GetService<IDataService>();

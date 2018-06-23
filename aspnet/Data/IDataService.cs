@@ -11,5 +11,6 @@ namespace aspnet.Data
         void InicializaDB();
         List<Person> GetPersons();
         void AddPersons(Person person);
+        List<Msg> GetMsgs();
     }
 }
