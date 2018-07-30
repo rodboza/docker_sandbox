@@ -1,0 +1,6 @@
+.idea/
+.vagrant
+*.iml
+node_modules/
+public/
+screenshots/

@@ -1,0 +1,91 @@
+version: '2.2'
+
+services:
+
+  kong-db:
+    image: postgres:9.5
+    container_name: kong-db
+    environment:
+      - POSTGRES_USER=kong
+      - POSTGRES_DB=kong
+    healthcheck:
+      test: "pg_isready -U kong && psql -d kong -U kong -c \"SELECT 1=1\""
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+
+  kong-migration:
+    image: kong:0.13.0
+    container_name: kong-migration
+    depends_on:
+      kong-db:
+        condition: service_healthy
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=kong-db
+    command: sh -c "kong migrations up && touch migrations_run && sleep 30"
+    healthcheck:
+      test: "if [[ -f migrations_run ]] ; then exit 0; else exit 1; fi"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kong:
+    image: kong:0.13.0
+    container_name: kong
+    depends_on:
+      kong-migration:
+        condition: service_healthy
+    restart: always
+    healthcheck:
+      test: "kong health"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=kong-db
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+    ports:
+      - 8001:8001
+      - 8000:8000
+
+  kong-dashboard:
+    build: kong-dashboard-3.3.0/.
+    container_name: kong-dash
+    ports:
+      - 8080:8080
+    depends_on:
+      kong:
+        condition: service_healthy
+    command: 'start --kong-url http://kong:8001'
+
+  web:
+    build: RESTfulAPITutorial/.
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    depends_on:
+      - 'mongo'
+
+  mongo:
+    image: 'mongo:3.4.1'
+    ports:
+      - '27017:27017'
+    expose:
+      - "27017"
+
+  httpie:
+    build: httpie/.
+    restart: always
+    depends_on:
+      - web
+      - kong
+    command: tail -F anything
+    container_name: httpie
+
+
+
